@@ -23,25 +23,47 @@
       box-sizing: border-box;
       border: 1px, solid, black;
     }
+    .button{
+      height: 30px;
+      width: 500px
+    }
+    .button_loss{
+      background-color: gray;
+      height: 30px;
+      width: 500px
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
   <script>
 
-    // const lessonData = require('./lessons.json')
-    const lessonDat = [
+
+
+
+
+
+
+
+
+    // const lessonData = JSON.parse(lessons)
+
+    
+    // const lessonDat = lessonData
+
+
+    let lessonDat = [
       {
       lesson: "NODE",
       date: "01-08-2024",
-      max_student: "10",
-      curent_student: "9"
+      max_student: 10,
+      curent_student: 9
       },
       {
       lesson: "JS",
       date: "02-08-2024",
-      max_student: "15",
-      curent_student: "10"
+      max_student: 15,
+      curent_student: 10
       }
     ];
 
@@ -55,7 +77,7 @@
     });
 
     function createLessons(lesson, date, max_student, curent_student){
-      console.log(lesson);
+      // console.log(lesson);
       const articleItem = document.createElement('li')
       articleItem.classList.add('list-group-item')
 
@@ -76,12 +98,16 @@
       lessonCurrentStudent.textContent = `Студентов в группе: ${curent_student}`;
 
       const addButton = document.createElement('button')
+      addButton.classList.add('btn');
+      addButton.className += ' btn-primary';
       addButton.textContent = "Записаться"
 
 
 
       const lossButton = document.createElement('button')
-      addButton.textContent = "Отменить запись"
+      lossButton.classList.add('btn');
+      lossButton.className += ' btn-warning';
+      lossButton.textContent = "Отменить запись"
 
       lessonList.append(lessonTitle)
       lessonList.append(lessonDate)
@@ -89,7 +115,21 @@
       lessonList.append(lessonCurrentStudent)
       lessonList.append(addButton)
       lessonList.append(lossButton)
+
+      addButton.addEventListener('click', function(e){
+        // console.log(e);
+        curent_student = curent_student+1
+        // console.log(curent_student);
+        lessonDat.curent_student = curent_student
+        // lessonDat.push(curent_student)
+        
+        // document.location.reload()
+
+
+      })
     }
+
+    // document.addEventListener()
     // console.log(lessonDat);
     // const createLessonList = createLessons(newLes.title)
   </script>
